@@ -1,0 +1,68 @@
+
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+
+    <button mat-icon-button  (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1>INFORMATION MANAGEMENT SYSTEM</h1>
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+      <ul fxLayout fxLayoutGap="30px">
+
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="auth">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #auth="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Sign out</span>
+            </button>
+          </mat-menu>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" style="height: 0;"></a>
+
+      <a mat-list-item [routerLink]="'/dashboard'"> Gender Group Category </a>
+      <a mat-list-item [routerLink]="'/serviceplace'"> ServicePlace </a>
+      <a mat-list-item [routerLink]="'/consultation'"> Consultation </a>
+
+
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+      <div class="page-layout blank p-24" fusePerfectScrollbar>
+        <mat-card>
+            <mat-card-content>
+                <mat-tab-group mat-stretch-tabs [selectedIndex]="selectedIndex" (selectedTabChange)="tabchanged($event)">
+                    <mat-tab label="All Gendergroup">
+                        <app-list-gendergroup (componentEvent)="receiveSelectedindex($event)"></app-list-gendergroup>
+                    </mat-tab>
+                    <mat-tab label="New Gendergroup">
+                        <app-new-gendergroup (componentEvent)="receiveSelectedindex($event)"></app-new-gendergroup>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-card-content>
+        </mat-card>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

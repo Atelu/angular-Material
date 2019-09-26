@@ -1,0 +1,478 @@
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1>INFORMATION MANAGEMENT SYSTEM</h1>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+      <ul fxLayout fxLayoutGap="30px">
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="auth">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #auth="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Sign out</span>
+            </button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" style="height: 0;"></a>
+      <a mat-list-item [routerLink]="'/dashboard'"> Gender Group Category </a>
+      <a mat-list-item [routerLink]="'/serviceplace'"> ServicePlace </a>
+      <a mat-list-item [routerLink]="'/consultation'"> Consultation </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- <div class="headtitle">
+      <p>Consultation</p>
+    </div> -->
+
+    <div class="containers" fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="50%">
+      <div fxFlex="30%" fxLayoutGap="50%">
+        <div class="headtitle">
+          <span>Consultation </span>
+        </div>
+      </div>
+
+      <div fxLayout="row" class="buttons" fxLayoutAlign="space-evenly center" fxLayoutGap="3%">
+        <button (click)="addConsult()" class="md-fabs"  [disabled]="isButtonEnable" mat-mini-fab >
+          <mat-icon>add</mat-icon>
+        </button>
+
+        <button   class="md-fabss" [disabled]="isButtonEnable"  mat-mini-fab color="primary">
+          <mat-icon>save</mat-icon>
+        </button>
+
+        <button (click)="clearForm()" [disabled]="isButtonEnable" class="md-fabsss"  mat-mini-fab color="primary">
+          <mat-icon>clear</mat-icon>
+        </button>
+
+        <button class="md-fab"  mat-mini-fab color="primary">
+          <mat-icon>error_outline</mat-icon>
+        </button>
+
+        <button class="md-fab" [disabled]="isButtonEnable" mat-mini-fab color="primary">
+          <mat-icon>done</mat-icon>
+        </button>
+
+        <button  class="md-fab" disabled mat-mini-fab color="primary">
+          <mat-icon>print</mat-icon>
+        </button>
+
+        <button class="md-fab"  disabled mat-mini-fab color="primary">
+          <mat-icon>cancel</mat-icon>
+        </button>
+
+      </div>
+
+    </div>
+    <br>
+
+    <!-- <div style="height: 88vh;"> -->
+      <!-- <div class="page-layout blank p-24" fusePerfectScrollbar> -->
+        <form [formGroup]="consultationForm" (ngSubmit)="submitForm()">
+
+        <div class="containers" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" >
+          <div fxLayout="row" fxFlex="40%">
+            <!-- <mat-form-field class="name">
+              <mat-select placeholder="Search By" name="agc" [(ngModel)]="selectedValue">
+                <mat-option *ngFor="let agc of search" [value]="agc.value">{{agc.viewValue}}</mat-option>
+              </mat-select>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field class="term">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Term" />
+            </mat-form-field> -->
+
+            <mat-form-field class="term">
+              <input matInput placeholder="Name" formControlName="name" />
+            </mat-form-field>
+
+
+            <mat-form-field class="age" >
+              <input matInput placeholder="Age" type="number"  formControlName="age" />
+            </mat-form-field>
+
+            <mat-form-field class="gender">
+              <input matInput placeholder="Gender" type="text"  formControlName="gender" class="form-control" />
+            </mat-form-field>
+
+            <mat-form-field class="height">
+              <input matInput placeholder="Height" type="any"  formControlName="height" class="form-control" />
+            </mat-form-field>
+
+            <mat-form-field class="weight">
+              <input matInput placeholder="Weight" type="any" formControlName="weight" class="form-control" />
+            </mat-form-field>
+
+            <mat-form-field class="bmi">
+              <input matInput placeholder="BMI" type="any"formControlName="bmi"  class="form-control" />
+            </mat-form-field>
+
+            <mat-form-field class="bp">
+              <input matInput placeholder="BP" class="example-contain" formControlName="bp" type="any" class="form-control" />
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="center start">
+              <div class="logo ml-16">
+                <!-- <img class="logo-icon" src="assets/images/logo/profile.jpg"> -->
+                <img   class="logo-icon" [src]="imgtop" >
+                <input type="file" (change)=" serviceplaceheadsignatureChange($event)" #servicePlaceimgSignature hidden>
+
+
+              </div>
+            </div>
+            <!-- [src]="sanitizer.bypassSecurityTrustResourceUrl(user.img)" -->
+              <div  fxLayoutAlign="center center">
+
+                <button mat-raised-button  class="example-containers">View Details</button>
+              </div>
+
+            <mat-form-field class="search">
+              <!-- <mat-select matNativeControl [disabled]="disableSelect.value" placeholder="Search By"  name="agc"  [(ngModel)]="selectedValue"> -->
+              <!-- <mat-option *ngFor="let agc of search" [value]="agc.value">{{agc.viewValue}}</mat-option> -->
+              <mat-select matNativeControl [disabled]="disableSelect.value" placeholder="Search By">
+                <option value="" selected></option>
+                <option value="saab" disabled>Saab</option>
+
+              </mat-select>
+            </mat-form-field>
+            <!-- <div class="example-container"> -->
+
+              <mat-form-field class="example-container" >
+                <button mat-button matPrefix mat-icon-button>
+                  <!-- <mat-icon [ngClass]="{'disable':payloadArray.enabled !== false}">search</mat-icon> -->
+                </button>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Term"/>
+
+
+              </mat-form-field>
+
+              <button disabled class="md-fab"  mat-mini-fab color="accent">
+                  <mat-icon>search</mat-icon>
+                </button>
+            <!-- </div> -->
+          </div>
+        </div>
+        <!-- </form> -->
+        <div class="container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px">
+          <div fxLayout="row" fxFlex="40%">
+            <mat-form-field class="doc" >
+              <mat-select  placeholder="Doctor" formControlName="doctor">
+                <mat-option *ngFor="let doc of doctors" [value]="doc.id">{{doc.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+              <mat-form-field class="ward">
+                <input matInput placeholder="Consultation Room/Ward" class="form-control" />
+              </mat-form-field>
+
+            <mat-form-field class="bed">
+              <input matInput placeholder="Bed" type="number" class="form-control" />
+            </mat-form-field>
+
+              <mat-form-field class="date">
+                <input matInput [matDatepicker]="picker" [min]="minDate"  [max]="maxDate" placeholder="Consultation Date">
+                <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-datepicker   #picker></mat-datepicker>
+              </mat-form-field>
+
+            <mat-form-field class="review">
+              <mat-select placeholder="Review" formControlName="selectedRev">
+                <mat-option *ngFor="let r of review" [value]="r.value">{{r.viewValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+              <mat-form-field class="dates">
+                <input matInput [matDatepicker]="pickers" [min]="minDates"  [max]="maxDates" placeholder="Review Date">
+                <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+                <mat-datepicker #pickers></mat-datepicker>
+              </mat-form-field>
+
+            <mat-form-field class="time">
+              <input matInput [ngxTimepicker]="pickerss" placeholder="Review Time">
+              <ngx-material-timepicker #pickerss></ngx-material-timepicker>
+            </mat-form-field>
+
+            <!-- <form class="example-form"> -->
+              <mat-form-field class="general">
+                <textarea rows="1" matInput placeholder="General Remarks"></textarea>
+              </mat-form-field>
+
+          </div>
+        </div>
+      </form>
+
+        <br>
+        <div class="container" style="width: 100%" fxLayout="row" fxLayoutAlign="space-around center"
+          fxLayoutGap="20px">
+
+          <div fxLayout="row" fxFlex="100%">
+            <mat-card class="my-card">
+              <mat-card-header>Patient List </mat-card-header>
+              <mat-card-content>
+
+                <table  mat-table [dataSource]="consultsSource">
+                  <!-- <tr mat-header-row *matHeaderRowDef="displaysColumn"></tr> -->
+                  <tr mat-row *matRowDef="let row; columns: displaysColumn"></tr>
+
+                  <ng-container matColumnDef="name">
+                    <!-- <th mat-header-cell *matHeaderCellDef>
+                          Name
+                        </th> -->
+                        <!-- src="assets/images/logo/test3.jpg" -->
+                    <td mat-cell *matCellDef="let user">{{user.name}}
+                      <div fxLayoutAlign="end center" fxLayoutGap="20%">
+                          <div fxLayout="row" fxLayoutAlign="start center">
+                              <div class="logo ml-12">
+                                <img class="logo-icon"  [src]="sanitizer.bypassSecurityTrustResourceUrl(user.img)">
+                              </div>
+                            </div>
+                        <div >
+                          <button class="example-containerss"  (click)="consultationStart = true" (click)= "setDefaultValue()"  mat-raised-button >Start Consultation</button>
+                        </div>
+
+                      </div>
+                    </td>
+                  </ng-container>
+
+                                </table>
+
+                <!-- <label class="my-tab">
+
+                </label> -->
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="my-cards">
+              <mat-card-header>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-tab-group >
+                  <mat-tab label="Vital Signs" class="my-tab">
+                    <!-- <form [formGroup]="consultForm"> -->
+
+                    <div fxLayout="row" fxLayoutGap="1%">
+                          <mat-form-field>
+                            <mat-select placeholder="General Vital Signs" name="agc" [(ngModel)]="selectedValue">
+                              <mat-option *ngFor="let gvs of vitalsigns" [value]="gvs.value">{{gvs.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+
+                          <mat-form-field>
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" />
+                            </mat-form-field>
+
+                      <mat-paginator #paginator1 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    </div>
+                    <table mat-table [dataSource]="consultationSource" matSort>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                          Description
+                        </th>
+                        <td mat-cell *matCellDef="let user">{{user.description}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="Measured Value">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Measured Value</th>
+                        <td mat-cell *matCellDef="let user">{{user.measuredValue}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="Remarks">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+                        <td mat-cell *matCellDef="let user">
+                          {{user.remarks}}
+                        </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="Date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                          Date
+                        </th>
+                        <td mat-cell *matCellDef="let user">
+                          {{user.date}}
+                        </td>
+                      </ng-container>
+                    </table>
+                    <!-- </form> -->
+                  </mat-tab>
+
+                  <mat-tab label="Last Visit Info" class="mytab">
+                      <div fxLayout="row"  fxLayoutGap="10%">
+
+                          <mat-form-field class= "searchss">
+                              <input matInput (keyup)="applyFilters($event.target.value)" placeholder="Search" />
+                            </mat-form-field>
+
+                    <mat-paginator #paginator2 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons = false></mat-paginator>
+                    </div>
+                    <table mat-table [dataSource]="consultationsSource">
+                      <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumn"></tr>
+
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>
+                          Name
+                        </th>
+                        <td mat-cell *matCellDef="let user">{{user.name}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="record">
+                        <th mat-header-cell *matHeaderCellDef>Record</th>
+                        <td mat-cell *matCellDef="let user">
+                          {{user.record}}
+                        </td>
+                      </ng-container>
+                    </table>
+                  </mat-tab>
+
+                  <mat-tab label="Clinical History" class="mytab">
+                      <div fxLayout="row" fxLayoutGap="1%">
+
+                          <mat-form-field class= "searchss">
+                              <input matInput (keyup)="applyFilterss($event.target.value)" placeholder="Search" />
+                            </mat-form-field>
+
+                    <mat-paginator #paginator3 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    </div>
+                    <table mat-table [dataSource]="consultationsSources">
+                      <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayColumn"></tr>
+
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>
+                          Name
+                        </th>
+                        <td mat-cell *matCellDef="let user">{{user.name}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="record">
+                        <th mat-header-cell *matHeaderCellDef>Record</th>
+                        <td mat-cell *matCellDef="let user">
+                          {{user.record}}
+                        </td>
+                      </ng-container>
+                    </table>
+                  </mat-tab>
+
+                  <mat-tab label="Allergies / Existing Medical Condition" class="mytab">
+                    <div fxLayout="row" fxLayoutGap="1%">
+
+                        <mat-form-field class= "searchss">
+                            <input matInput (keyup)="applyFiltersss($event.target.value)" placeholder="Search" />
+                          </mat-form-field>
+                    <mat-paginator #paginator4 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                        </div>
+                    <table mat-table [dataSource]="consultSource">
+                      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+
+                      <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef>
+                          Description
+                        </th>
+                        <td mat-cell *matCellDef="let user">{{user.description}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="remarks">
+                        <th mat-header-cell *matHeaderCellDef>Remarks</th>
+                        <td mat-cell *matCellDef="let user">
+                          {{user.remarks}}
+                        </td>
+                      </ng-container>
+                    </table>
+                  </mat-tab>
+                </mat-tab-group>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="my-cardss">
+              <mat-card-header>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-tab-group  [selectedIndex]="selectedIndex">
+                  <mat-tab label="Reports/Charts " class="my-tab">
+                    <div class="headtitles">
+                      <div class="item">
+                        <span> Laboratory Report
+                        </span>
+                      </div>
+                      <br>
+                      <div class="item">
+                        <span> Temperature Chart
+                        </span>
+                      </div>
+                      <br>
+                      <div class="item">
+                        <span> Blood Pressure Chart
+                        </span>
+                      </div>
+                      <br>
+                      <div class="item">
+                        <span> Medication Chart
+                        </span>
+                      </div>
+                      <br>
+
+
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="Consultation Data " class="my-tab">
+
+                    <div class="headtitles">
+                      <div class="item">
+                        <span (click)="openDialog()"> Complaints/Clinical Notes
+                        </span>
+                      </div>
+                      <br>
+
+                      <div class="item">
+                        <span (click)="openDiagnosis()"> Diagnosis
+                        </span>
+                      </div>
+                      <br>
+
+                      <div class="item">
+                        <span (click)="openDocument()"> Documents
+                        </span>
+                      </div>
+                      <br>
+
+                      <div class="item">
+                        <span (click)="openExam()"> Exams And Findings
+                        </span>
+                      </div>
+                      <br>
+
+                      <!-- <div class="item">
+                        <span> Prescription
+                        </span>
+                      </div> -->
+
+                    </div>
+                  </mat-tab>
+                </mat-tab-group>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      <!-- </div> -->
+
+    <!-- </div> -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

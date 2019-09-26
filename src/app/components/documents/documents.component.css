@@ -1,0 +1,19 @@
+.headtitle{
+  color: darkgoldenrod;
+  font-size:20px;
+  text-align: auto;
+}
+table {
+  width: 100%;
+  /* overflow: auto; */
+  border: 1px solid whitesmoke;
+
+    /* table-layout: fixed; */
+
+}
+.example-container {
+  width: 100%;
+  margin-left: 5%;
+}
+
+

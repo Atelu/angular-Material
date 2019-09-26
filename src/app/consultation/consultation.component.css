@@ -1,0 +1,260 @@
+.mat-form-field {
+  font-size: 14px;
+  /* width: 15%; */
+  padding-left: 2%;
+  padding-right: 2%;
+
+}
+
+.mat-card-header{
+  margin-bottom: 10%;
+text-align: center
+}
+.example-container {
+  width: 100%;
+  /* margin-left: 10%; */
+}
+.search {
+  width: 20%;
+}
+.name {
+  padding-left: 5%;
+  width: 18%;
+}
+.term {
+  width: 25%;
+  margin-left: 3%;
+}
+.ward {
+  width: 26%;
+}
+.doc {
+  min-width: 25%;
+  padding-left: 5%;
+}
+.bed {
+  min-width: 25%;
+}
+.date {
+  width: 25%;
+}
+.dates {
+  width: 20%;
+}
+.review {
+  min-width: 12%;
+}
+.time {
+  width: 20%;
+  font-size: 14px;
+
+}
+.general {
+  min-width: 60%;
+}
+.example-full-width {
+  width: 100%;
+}
+
+.example-form {
+  min-width: 50%;
+  max-width: 40%;
+  width: 100%;
+  padding-left: 2%;
+
+}
+.headtitle{
+  padding-left: 5%;
+  font-size:40px;
+  color: #006699;
+  margin-top: 2%;
+  /* text-align: top; */
+}
+.example-contain > * {
+  width: 100%;
+  margin-left: 10%;
+  padding-left: 10%;
+
+}
+.buttons {
+  /* margin-right: 10%; */
+  padding-right: 2.5%;
+  /* padding-left: 10%; */
+
+}
+.age {
+  width: 15%;
+
+}
+.gender {
+  width: 15%;
+}
+.height {
+  width: 15%;
+}
+.weight {
+  width: 15%;
+}
+.bmi {
+  width: 15%;
+}
+.bp {
+  width: 15%;
+}
+.example-containers  {
+  /* width: 50%; */
+  /* height: 50; */
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: #006699;
+  /* width: 20px; */
+  /* height: 60px; */
+  font-size: 13px;
+  text-align: center;
+  max-width: 90%;
+  max-height: 50%;
+  /* margin-left: 15%; */
+  /* margin-bottom: 5%; */
+  /* margin-top: 10%; */
+  color: white;
+  padding: 1 15px 0 6px;
+  margin: 15px 15px 15px 10px;
+
+}
+.example-containerss  {
+  background-color: #006699;
+  /* width: 20px; */
+  height: 30px;
+  font-size: 13px;
+  text-align: center;
+  max-width: 90%;
+  max-height: 10%;
+  margin-left: 15%;
+  margin-bottom: 10%;
+  margin-top: 15%;
+  color: white;
+  padding: 0 6px 0 6px;
+  margin: 15px 15px 12px 10px;
+}
+table {
+  width: 100%;
+  /* height: 100%; */
+    /* table-layout: fixed; */
+    border: 1px solid whitesmoke;
+}
+.my-card{
+  width: 18%;
+  margin-right: 1%;
+  margin-left: 2%;
+  height: 15%;
+  position: relative;
+  display: block;
+
+}
+.my-cards{
+  /* padding-left: 5%; */
+  width: 52%;
+  height: 15%;
+  position: relative;
+  display: block;
+
+
+  /* max-height: 400px; */
+
+  /* margin-right: 2%; */
+  /* margin-left: 2%; */
+
+}
+.my-cardss{
+
+  /* padding-left: 5%; */
+  width: 18%;
+  height: 15%;
+  /* margin-right: 3%; */
+  margin-left: 1%;
+  position: relative;
+  display: block;
+
+
+}
+.searchss {
+  width: 30%;
+}
+
+
+
+.headtitles{
+  color: #006699;
+  font-size:14px;
+  text-align: left;
+  margin-top: 5%;
+  padding-left: 10%;
+}
+
+.headtitles .item:hover {
+  font-weight: bold;
+  color: gold;
+  cursor: pointer;
+
+
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+}
+  .logo-icon {
+      /* width: 30px;
+      border-radius: 70%;
+      padding-right: 20%; */
+      line-height: 2.2rem;
+      min-width: 0;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+
+
+  }
+/* .container {
+  width: 100%;
+} */
+.md-fab {
+  line-height: 2.2rem;
+  min-width: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+}
+.md-fabs {
+  line-height: 2.2rem;
+  min-width: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background-color: #006699;
+}
+.md-fabss {
+  line-height: 2.2rem;
+  min-width: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background-color: #BF9B30;
+}
+.md-fabsss {
+  line-height: 2.2rem;
+  min-width: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background-color: rgb(105, 104, 102);
+}
+.mat-icon {
+  font-size: 20px;
+  min-width: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+
+}
+

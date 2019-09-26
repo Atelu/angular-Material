@@ -1,0 +1,16 @@
+.my-button {
+  width: 30px;
+  height: 30px;
+  margin: 30px auto;
+  left: 16%;
+
+}
+.load{
+  color: black;
+  padding-left: 10%
+}
+.reload{
+  position: absolute;
+  top: 10%;
+  left: 11%;
+}

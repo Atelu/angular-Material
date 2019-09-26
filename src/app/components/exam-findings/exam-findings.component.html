@@ -1,0 +1,70 @@
+<div class="container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="width:100%">
+  <div fxFlex="50%" fxLayoutGap="10px">
+    <div class="headtitle">
+      <p>Exams And Findings</p>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px" style="width:100%">
+
+    <button mat-raised-button color="accent" [disabled]="isButtonEnable" (click)="onConfirmClick()">Save</button>
+    <button mat-raised-button color="accent" (click)="onCancelClick()">Cancel</button>
+  </div>
+</div>
+
+<div fxLayout="row"  fxLayoutGap="25%" >
+<mat-form-field class="search">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" />
+  </mat-form-field>
+<mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+</div>
+
+
+<table mat-table [dataSource]="examFindingSource">
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <section class="example-section">
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                     [indeterminate]="selection.hasValue() && !isAllSelected()"
+                     [checked]="selection.hasValue() && isAllSelected()">
+        </mat-checkbox>
+      </section>
+
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                     (change)="$event ?  singleCheck(row): null"
+                     [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="exam">
+    <th mat-header-cell *matHeaderCellDef>
+      Exam
+    </th>
+    <td mat-cell *matCellDef="let user">{{user.exam}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="findings">
+    <th mat-header-cell *matHeaderCellDef>Findings</th>
+    <td mat-cell *matCellDef="let user">{{user.findings}}
+      <mat-form-field class="example-full-width">
+        <textarea rows="1" [disabled]="user.enabled" matInput ></textarea>
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="remarks">
+    <th mat-header-cell *matHeaderCellDef>Remarks</th>
+    <td mat-cell *matCellDef="let user">{{user.remarks}}
+        <mat-form-field class="example-full-width">
+            <textarea rows="1" [disabled]="user.enabled" matInput ></textarea>
+          </mat-form-field>
+    </td>
+  </ng-container>
+
+</table>

@@ -1,0 +1,57 @@
+
+<div class="progress-bar" [hidden]="!loading">
+    <mat-progress-bar
+    [mode]="'indeterminate'" >
+    </mat-progress-bar>
+</div>
+
+<!-- <div class="progress-loader" [hidden]="!loading">
+
+    <mat-progress-spinner [mode]="'indeterminate'">
+    </mat-progress-spinner> -->
+
+<!-- </div> -->
+<mat-card class="login-form">
+  <div class="imagelogo">
+    <img class="img-fluid" alt="" src="assets/images/logo/logo.PNG">
+  </div>
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="loginform" (ngSubmit)="onSubmit()" class="example-form">
+      <div class="headtitle">
+        <p>HOSPITAL INFORMATION MANAGEMENT SYSTEM.</p>
+      </div>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username" formControlName="username" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+          <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" formControlName="password" type="password" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+
+        </div>
+      </mat-form-field>
+      <div>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+          <mat-card-actions>
+            <!-- <button mat-raised-button color="" class="my-class">LOGIN</button> -->
+            <button mat-raised-button color="accent" class="my-class" aria-label="LOGIN" [disabled]="loginform.invalid">
+              LOGIN
+            </button>
+          </mat-card-actions>
+          <div *ngIf="invalidPassword" fxFlex="25%" class="val">Wrong Username or password</div>
+          <div class="link" fxFlex="50%">Forgot Password?</div>
+
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<!-- </div> -->

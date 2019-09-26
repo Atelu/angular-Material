@@ -1,0 +1,149 @@
+<div class="container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px" style="width:100%">
+  <div fxFlex="50%" fxLayoutGap="50px">
+    <div class="headtitle">
+      <p>Diagnosis</p>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px" style="width:100%">
+
+    <button mat-raised-button color="accent" [disabled]="isButtonEnable" (click)="onConfirmClick()">Save</button>
+    <button mat-raised-button color="accent" (click)="onCancelClick()">Cancel</button>
+  </div>
+
+</div>
+<div fxLayout="row"  fxLayoutGap="25%">
+
+    <mat-form-field class="search">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" />
+      </mat-form-field>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<table mat-table [dataSource]="diagnosisSource">
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>
+      Description
+    </th>
+    <td mat-cell *matCellDef="let user">{{user.description}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>
+      Type
+    </th>
+    <td mat-cell *matCellDef="let row">{{row.type}}
+      <div class="example-container">
+
+        <mat-form-field>
+          <mat-select [disabled]="row.enabled" [(ngModel)]="selectedRev">
+            <mat-option *ngFor="let r of type"   [value]="r.value">{{r.viewValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="principal">
+    <th mat-header-cell *matHeaderCellDef>
+      Principal
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox [disabled]="row.enabled" class="example-margin"  >
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef>
+      Category
+    </th>
+    <td mat-cell *matCellDef="let row">{{row.value}}
+      <div class="example-container">
+
+        <mat-form-field>
+          <mat-select [disabled]="row.enabled" [(ngModel)]="selectedCat">
+            <mat-option *ngFor="let cat of category"   [value]="cat.value">{{cat.viewValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="outcome">
+    <th mat-header-cell *matHeaderCellDef>
+      Outcome
+    </th>
+    <td mat-cell *matCellDef="let row">{{row.value}}
+      <div class="example-container">
+
+        <mat-form-field>
+          <mat-select [disabled]="row.enabled" [(ngModel)]="selectedOut">
+            <mat-option *ngFor="let out of outcome" [value]="out.value">{{out.viewValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="remarks">
+    <th mat-header-cell *matHeaderCellDef>
+      Remarks
+    </th>
+    <td mat-cell *matCellDef="let row">{{row.value}}
+      <mat-form-field class="example-full-width">
+        <textarea [disabled]="row.enabled" rows="1" matInput></textarea>
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+        <section class="example-section">
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [checked]="selection.hasValue() && isAllSelected()">
+      </mat-checkbox>
+    </section>
+
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                   (change)="$event ?  singleCheck(row) : null"
+                   [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="view">
+    <th mat-header-cell *matHeaderCellDef>View
+    </th>
+    <td mat-cell *matCellDef="let user">
+      {{user.view}}
+      <button mat-button [matMenuTriggerFor]="menu">View
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            Treatment Guide
+          </button>
+          <button mat-menu-item>
+            Symptoms / Complaints
+          </button>
+          <button mat-menu-item>
+            Medications
+          </button>
+          <button mat-menu-item>
+            Investigations
+          </button>
+          <button mat-menu-item>
+            Procedures
+          </button>
+        </mat-menu>
+        <!-- <mat-icon>keyboard_arrow_down</mat-icon> -->
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" >
+  </tr>
+</table>

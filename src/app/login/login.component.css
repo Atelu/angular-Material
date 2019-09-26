@@ -1,0 +1,70 @@
+mat-card{
+  width: 320px;
+  height: 450px;
+  /* display: block; */
+  /* margin-top: 100%; */
+  /* margin-left:auto;
+  margin-right:auto; */
+
+}
+/* .example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+} */
+.headtitle{
+  color: #006699;
+  font-size:18px;
+  text-align: center;
+}
+.example-full-width {
+  width: 100%;
+  /* margin-top: 5%; */
+
+}
+.login-form {
+
+  margin: auto;
+  margin-top: 5%;
+
+}
+.img-fluid{
+  align-items: center;
+  margin-left: 15%;
+
+}
+
+.login-full-width {
+  width: 100%;
+  margin-top: 15%;
+
+}
+.val{
+  color: red;
+
+}
+
+.container-fluid {
+  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+.my-class{
+  width: 100%!important;
+  margin: 16px auto;
+  display: block;
+
+  /* margin: auto; */
+  /* min-width: unset!important; */
+}
+.link {
+  align-items: center;
+  text-align: center;
+  margin-top: 10%;
+  color: #006699;
+
+
+}
+

@@ -1,0 +1,27 @@
+<form [formGroup]="serviceForm" (ngSubmit)="submitForm()">
+  <div class="container" style="width: 100%" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+    <div fxFlex="30%">
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Id" formControlName="id" class="form-control" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxFlex="30%">
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="name" class="form-control" />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="width: 100%" fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="50px">
+    <div fxFlex="30%">
+      <div class="example-container">
+
+        <mat-checkbox class="checkbox" formControlName="isactive" [labelPosition]="'before'">Is Active</mat-checkbox>
+
+      </div>
+    </div>
