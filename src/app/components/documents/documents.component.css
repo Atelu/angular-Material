@@ -16,4 +16,23 @@ table {
   margin-left: 5%;
 }
 
-
+.search {
+  width: 30%;
+  padding-left: 10px;
+}
+.action-link {
+  font-weight: bold;
+  color: green;
+  cursor: pointer;
+}
+.action-links {
+  font-weight: bold;
+  color: red;
+  cursor: pointer;
+}
+.field {
+  /*width: 60%;*/
+  display: flex;
+  max-width: none;
+  margin-left: 50%;
+}

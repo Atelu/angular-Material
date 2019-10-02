@@ -1,7 +1,15 @@
 import { DomSanitizer } from '@angular/platform-browser';
 import { ExamFindingsComponent } from './../components/exam-findings/exam-findings.component';
 import { Component, OnInit, ViewChild, Output, EventEmitter, QueryList, ViewChildren } from '@angular/core';
-import { MatSidenav, MatTabChangeEvent, MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import {
+  MatSidenav,
+  MatTabChangeEvent,
+  MatTableDataSource,
+  MatPaginator,
+  MatSort,
+  MatDialog,
+  MatSnackBar
+} from '@angular/material';
 import { AuthorizationService } from '../Utilities/authorization.service';
 import { ConsultationService } from './consultation.service';
 import { Router } from '@angular/router';
@@ -113,6 +121,7 @@ export class ConsultationComponent implements OnInit {
   @ViewChild('commandbarSidenav', { static: false })
 
   public sidenav: MatSidenav;
+  statusMessage: string;
 
   color = 'primary';
   mode = 'indeterminate';
@@ -218,7 +227,7 @@ export class ConsultationComponent implements OnInit {
   ];
 
   constructor(private authorizationService: AuthorizationService, private router: Router,
-              public sanitizer: DomSanitizer,
+              public sanitizer: DomSanitizer, public snackBar: MatSnackBar,
               private consultationService: ConsultationService, private fb: FormBuilder, public dialog: MatDialog) {}
 
   applyFilter(filterValue) {
@@ -347,7 +356,7 @@ export class ConsultationComponent implements OnInit {
 
         if (result === 'Confirm') {
 
-          console.log('The dialog was closed');
+          // console.log('The dialog was closed');
         } else {
           if (result === 'Cancel') {
             this.dialog.closeAll();
@@ -355,6 +364,7 @@ export class ConsultationComponent implements OnInit {
         }
       });
     } else {
+
       alert('start Consultation');
     }
   }
@@ -379,8 +389,15 @@ export class ConsultationComponent implements OnInit {
         }
       });
     } else {
-      alert('start Consultation');
+      // this.openSnackBar(this.statusMessage, 'Please Start Consultation');
+      alert('Start Consultation');
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
   // clear consultation form
   clearForm(): void {
@@ -388,6 +405,8 @@ export class ConsultationComponent implements OnInit {
     this.imgtop = 'assets/images/logo/profile.jpg';
     this.consultationStart = false;
     this.isButtonEnable = true;
+    // alert ('Consultation Ended');
+    this.openSnackBar(this.statusMessage, 'Consultation Ended Successfully');
 
 
 
@@ -416,6 +435,9 @@ export class ConsultationComponent implements OnInit {
     this.selectedIndex = this.selectedIndex + 1;
     this.isButtonEnable = false;
     this.consultationStart = true;
+    // alert ('Consultation has started');
+    this.openSnackBar(this.statusMessage, 'Consultation has Started Successfully');
+
     if (this.imgtop  != null) {
     this.imgtop = 'assets/images/logo/test1.jpg';
     } else {

@@ -1,19 +1,8 @@
 table {
   width: 100%;
 }
-.mat-form-field {
-  font-size: 14px;
-  width: 50%;
-  padding-left: 5%;
 
-}
-.example-container > * {
-  width: 100%;
-  /* margin-left: 10%; */
-}
-.my-card{
-  padding-left: 1%;
-}
+
 .my-button {
   width: 30px;
   height: 30px;
@@ -22,21 +11,6 @@ table {
 
 }
 
-.example-margin {
-  /* width: 20px; */
-  position: absolute;
-  top: 18%;
-  left: 18%;
-}
-.load{
-  color: black;
-  padding-left: 10%
-}
-.reload{
-  position: absolute;
-  top: 10%;
-  left: 11%;
-}
 .md-fab {
   line-height: 3.6rem;
   min-width: 0;
@@ -80,43 +54,19 @@ table {
     height: 50px; */
     border-radius: 50%!important;
   }
+.md-fabs {
+  line-height: 2.2rem;
+  min-width: 0;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background-color: #006699;
+  margin-right: 2%;
+  /*margin-bottom: 5%;*/
+}
+
+/**{*/
+/*  border: solid grey 1px;*/
+/*}*/
 
 
-  .some-page-wrapper {
-    /* display: flex; */
-    margin: 15px;
-    /* background-color: red; */
-  }
-
-  .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-
-  .column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-  }
-
-  .orange-column {
-    /* background-color: orange; */
-    height: 100px;
-  }
-
-  .blue-column {
-    /* background-color: blue; */
-    height: 100px;
-  }
-
-  .green-column {
-    /* background-color: green; */
-    height: 100px;
-  }
-
-  .form {
-    width: 100%;
-  }

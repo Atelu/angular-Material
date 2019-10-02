@@ -18,7 +18,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MyInterceptor, ContentType } from './Utilities/Httpinterceptor';
+import { MyInterceptor } from './Utilities/Httpinterceptor';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ServiceplaceComponent } from './serviceplace/serviceplace.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -69,11 +69,11 @@ import { ExamFindingsComponent } from './components/exam-findings/exam-findings.
       useClass: MyInterceptor,
       multi: true
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ContentType,
-      multi: true
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ContentType,
+    //   multi: true
+    // },
     AuthorizationService , ServiceplaceService],
   bootstrap: [AppComponent]
 })

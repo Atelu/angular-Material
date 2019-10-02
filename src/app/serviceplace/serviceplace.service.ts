@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/models';
+import {DomSanitizer} from '@angular/platform-browser';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +14,11 @@ export class ServiceplaceService {
 
   private serviceUrl = this.configUrl + 'serviceplace?size=1000';
 
-  constructor( private http: HttpClient, ) { }
+  constructor( private http: HttpClient,  public sanitize: DomSanitizer ) { }
 
   sanitizeImgBytes(imageByte: string): any {
-    return 'data:image/png;base64' + imageByte;
+    // return this.sanitize.bypassSecurityTrustResourceUrl('data:image/png;base64' + imageByte);
+    return 'data:image/png;base64,' + imageByte;
   }
 
   saveUser(user: User): Observable<any> {

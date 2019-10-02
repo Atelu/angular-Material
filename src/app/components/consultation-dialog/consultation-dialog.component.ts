@@ -32,7 +32,7 @@ export class ConsultationDialogComponent implements OnInit {
   }
 
   onClearText(): void {
-    this.loginClick = true;
+    this.consultsForm.reset();
     this.isButtonEnable = false;
   }
 
@@ -40,7 +40,12 @@ export class ConsultationDialogComponent implements OnInit {
     this.dialogRef.close('Cancel');
   }
   onConfirmClick(): void {
-    this.dialogRef.close('Confirm');
+    if (this.consultsForm.touched === true ) {
+alert ('No API to connect to');
+    } else {
+
+    alert ('Nothing to save');
+    }
   }
 
 }

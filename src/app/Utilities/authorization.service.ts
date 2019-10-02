@@ -33,6 +33,7 @@ login(username: string, password: string): Observable<User> {
       }));
 }
 
+
 getToken(): string {
   return localStorage.getItem('token');
 }

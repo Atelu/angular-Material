@@ -46,6 +46,7 @@
       <div class="page-layout blank p-24" fusePerfectScrollbar>
         <mat-card>
           <mat-card-content>
+
             <mat-tab-group mat-stretch-tabs [selectedIndex]="selectedIndex" (selectedTabChange)="tabchanged($event)">
               <mat-tab label="All Serviceplace">
                 <app-list-serviceplace (componentEvent)="receiveSelectedindex($event)"></app-list-serviceplace>
@@ -57,7 +58,6 @@
           </mat-card-content>
         </mat-card>
       </div>
-      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

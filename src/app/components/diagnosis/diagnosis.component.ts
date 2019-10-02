@@ -141,6 +141,7 @@ export class DiagnosisComponent implements OnInit {
     this.dialogRef.close('Cancel');
   }
   onConfirmClick(): void {
-    this.dialogRef.close('Confirm');
+    // this.dialogRef.close('Confirm');
+    alert ('No API to connect to');
   }
 }

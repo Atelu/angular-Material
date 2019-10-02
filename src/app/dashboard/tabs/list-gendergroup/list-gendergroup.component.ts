@@ -31,7 +31,8 @@ export class ListGendergroupComponent implements OnInit {
 
   @Output() componentEvent = new EventEmitter<any>();
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
 
   constructor(private gendergroupService: GenderGroupService,
               public dialog: MatDialog, public snackBar: MatSnackBar) { }
@@ -57,14 +58,16 @@ export class ListGendergroupComponent implements OnInit {
         this.tableData = users.data.content;
         this.initTable();
         this.isloading = false;
+        console.log(this.tableData);
 
       },
       error => (this.isloading = false)
     );
   }
-  initTable(): void {
+  initTable() {
     this.dataSource = new MatTableDataSource(this.tableData);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   load(): void {
 

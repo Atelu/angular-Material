@@ -84,6 +84,7 @@ export class ListServiceplaceComponent implements OnInit {
   initTable(): void {
     this.dataSource = new MatTableDataSource(this.tableData);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   deleteServiceplace(Id: string): void {
     this.serviceplaceService.deleteServiceplace(Id).subscribe(
@@ -107,7 +108,7 @@ export class ListServiceplaceComponent implements OnInit {
         if (result === 'Confirm') {
             this.deleteServiceplace(user.id);
             // this.getAllRoomTypes();
-            console.log('The dialog was closed');
+            // console.log('The dialog was closed');
         } else {
             if (result === 'Cancel') {
                 this.dialog.closeAll();

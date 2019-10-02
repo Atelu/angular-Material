@@ -7,6 +7,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { DialogoverviewComponent } from 'src/app/components/dialogoverview/dialogoverview.component';
 import { Serviceplace } from 'src/app/models/serviceplace';
 import * as _ from 'lodash';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-new-serviceplace',
@@ -22,8 +23,8 @@ export class NewServiceplaceComponent implements OnInit {
   showTable: boolean;
   statusMessage: string;
   users: Serviceplace[];
-  logo: any = 'assets/images/logo/profile.jpg';
-  imgSignature: any = 'assets/images/logo/profile.jpg';
+  logo = 'assets/images/logo/profile.jpg';
+  imgSignature = 'assets/images/logo/profile.jpg';
 
 
   /** age group filtered by ageCategoryId */
@@ -54,6 +55,7 @@ export class NewServiceplaceComponent implements OnInit {
   constructor(private serviceplaceService: ServiceplaceService,
               private fb: FormBuilder, private router: Router, private route: ActivatedRoute,
               public dialog: MatDialog, public snackBar: MatSnackBar,
+              public sanitize: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -61,7 +63,7 @@ export class NewServiceplaceComponent implements OnInit {
 
 
     this.serviceForm = this.fb.group({
-      name: ['GHGGJMJMJG', [Validators.required]],
+      name: ['', [Validators.required]],
       code: ['', Validators.required],
       agegroupcategoryid: [null, Validators.required],
       gendergroupid: [null, Validators.required],
@@ -105,23 +107,26 @@ export class NewServiceplaceComponent implements OnInit {
       createuserid: data.createuserid,
       isactive: data.isactive,
     });
-    console.log('data', data);
+    // console.log('data', data);
 
     this.editPlaceData = data;
     this.editPlaceId = data.id;
     // this.logo = data.logopicture;
+    // this.logo = this.serviceplaceService.sanitizeImgBytes(data.logopicture);
+    // this.imgSignature = this.serviceplaceService.sanitizeImgBytes(data.headsignaturepicture);
+    // this.imgSignature = data.headsignaturepicture;
     this.logo = data.logopicture && this.serviceplaceService.sanitizeImgBytes(data.logopicture);
     this.imgSignature = data.headsignaturepicture && this.serviceplaceService.sanitizeImgBytes(data.headsignaturepicture);
 
 
 
-    if (data.logopicture || data.imgSignature != null) {
-      this.logo = data.logopicture;
-      this.imgSignature = data.headsignaturepicture;
-    } else {
-      this.logo = 'assets/images/logo/profile.jpg';
-      this.imgSignature = 'assets/images/logo/profile.jpg';
-    }
+    // if (data.logopicture || data.imgSignature != null) {
+    //   this.logo = data.logopicture;
+    //   this.imgSignature = data.headsignaturepicture;
+    // } else {
+    //   this.logo = 'assets/images/logo/profile.jpg';
+    //   this.imgSignature = 'assets/images/logo/profile.jpg';
+    // }
 
   }
 
@@ -134,8 +139,8 @@ export class NewServiceplaceComponent implements OnInit {
 
   clearForm(): void {
     this.serviceForm.reset();
-    this.logo = null;
-    this.imgSignature = null;
+    this.logo = 'assets/images/logo/profile.jpg';
+    this.imgSignature = 'assets/images/logo/profile.jpg';
 
   }
 
@@ -180,11 +185,13 @@ export class NewServiceplaceComponent implements OnInit {
 
 
       placeData.isactive = this.serviceForm.value.isactive;
-      placeData.logopicture = this.logo;
+      // placeData.logopicture = this.logo;
       placeData.headsignaturepicture = this.logo;
-      // placeData.logopicture = this.logo && this.logo.split(',')[1];
-      // placeData.headsignaturepicture = this.imgSignature && this.imgSignature.split(',')[1];
-  // console.log();
+      console.log('logo before', _.cloneDeep(this.logo));
+      placeData.logopicture = this.logo && this.logo.split(',')[1];
+      placeData.headsignaturepicture = this.imgSignature && this.imgSignature.split(',')[1];
+
+      console.log('logo after', this.logo);
       if (!this.editPlaceId) {
         console.log('New Place');
         this.saveNew(placeData);
@@ -283,7 +290,7 @@ export class NewServiceplaceComponent implements OnInit {
      * @param id
      */
   filterAgeGroupByCatId(id: number): any[] {
-    console.log('filter by id', id);
+    // console.log('filter by id', id);
     if (id) {
       // make a copy of the age groups
       const ageGroupsCopy = this.agegroup.slice();
@@ -306,7 +313,7 @@ export class NewServiceplaceComponent implements OnInit {
         this.AllAgegroups = this.filterAgeGroupByCatId(value);
 
         console.log(this.AllAgegroups);
-        console.log('value', value);
+        // console.log('value', value);
 
         // this.selectAgeGroups = this.agegroupcategory.find(x => x.id === value);
         // console.log(this.selectAgeGroups);
