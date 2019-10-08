@@ -82,7 +82,7 @@
       <!-- <div class="page-layout blank p-24" fusePerfectScrollbar> -->
         <form [formGroup]="consultationForm" (ngSubmit)="submitForm()">
 
-        <div class="containers" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" >
+        <div class="container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" >
           <div fxLayout="row" fxFlex="40%">
             <!-- <mat-form-field class="name">
               <mat-select placeholder="Search By" name="agc" [(ngModel)]="selectedValue">
@@ -139,8 +139,7 @@
               </div>
 
             <mat-form-field class="search">
-              <!-- <mat-select matNativeControl [disabled]="disableSelect.value" placeholder="Search By"  name="agc"  [(ngModel)]="selectedValue"> -->
-              <!-- <mat-option *ngFor="let agc of search" [value]="agc.value">{{agc.viewValue}}</mat-option> -->
+
               <mat-select matNativeControl [disabled]="disableSelect.value" placeholder="Search By">
                 <option value="" selected></option>
                 <option value="saab" disabled>Saab</option>
